@@ -1,0 +1,42 @@
+<?php 
+$nav = array(
+        'admin' => array(
+                    'home' => array('url' => $this->baseUrl().'/index/home', 'text' => 'Home'),
+                    'team' => array('url' => $this->baseUrl().'/team/list', 'text' => 'Teams'),
+                    'teamuser' => array('url' => $this->baseUrl().'/teamuser/list', 'text' => 'Users'),
+                    'player' => array('url' => $this->baseUrl().'/player/list', 'text' => 'Players'),  
+                    'championship' => array('url' => $this->baseUrl().'/championship/list', 'text' => 'Championships'),             
+                    'tournement' => array('url' => $this->baseUrl().'/tournement/list', 'text' => 'Tournements'),  
+                    ),
+        'user' => array(
+                    'home' => array('url' => $this->baseUrl().'/index/home', 'text' => 'Home'),
+                    'teamuser' => array('url' => $this->baseUrl().'/teamuser/list', 'text' => 'Users'),
+                    'player' => array('url' => $this->baseUrl().'/player/list', 'text' => 'Players'),            
+                    ),
+);
+
+if ($this->isAllowedHelper(My_Roles::TEAMUSER)){
+    $navigation =  $nav['user'];
+} else if($this->isAllowedHelper(My_Roles::ADMIN)){
+    $navigation =  $nav['admin'];
+} else {
+    $navigation = array();
+}
+?>
+<ul class="group" id="example-one" style="margin:0 0 0 200px;padding:0;">
+<?php 
+    foreach($navigation as $key=>$v){
+        if ($this->controller=='index'){
+            //there are 2 actions from index controller, so we need to check the action instead of controller
+            $sel = $this->action==$key ? 'nav_selected' : '';
+        } else {
+            $sel = $this->controller==$key? 'nav_selected' : '';
+        } ?>
+        <li class="<?php echo $sel;?>">
+            <a href="<?php echo $this->escape($v['url']);?>">
+                <?php echo $this->translate($v['text']);?>
+            </a>
+        </li>
+        <?php echo PHP_EOL;
+    } ?>
+ </ul>

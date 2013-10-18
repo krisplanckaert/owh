@@ -1,0 +1,434 @@
+body{
+    min-width:900px;
+	/*background:url(../images/admin/bkgd.jpg) repeat-x #666;*/
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	margin:10px auto 0px auto;
+	padding:0px;
+}
+
+#wrapper {
+  width:1040px;
+  min-height:500px;
+  color: black;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:left;
+  margin-top:0;
+  margin-bottom:0;
+  padding:0;
+  border-radius: 6px 6px 6px 6px;
+}
+
+#header{
+	color:black;
+	background-color:white;
+          border-radius: 6px 6px 6px 6px;
+}
+
+#header #banner{
+	height:118px;
+    width:940px;
+	background-color:white;
+	/*background-image:url(../images/admin/banner_top.jpg); */
+	margin:0;
+	padding:0;
+	text-align:center;
+}
+#header #banner h1{
+	text-align:right;
+	font-size: 13px;
+	text-transform:uppercase;
+	margin:0;
+	background-color:white;
+	/* padding:21px 4px 0 0; */
+}
+a:link, a:visited{
+	color:#000;
+	margin:0px;
+	padding:0px;
+}
+a:hover, a:active{
+	color:#006699;
+	margin:0px;
+	padding:0px;
+}
+#nav{
+	text-align:left;
+	vertical-align:middle;
+	background-color:white;
+	margin:0px;
+	padding:5px;
+	color:black;
+	border-bottom:1px dotted black;
+}
+a.nav:link, a.nav:visited{
+	color:black;
+	margin:0px;
+	/* padding:0px 50px 0px 0px; */
+}
+a.nav:hover, a.nav:active{
+	color:red;
+	margin:0px;
+	/* padding:0px 50px 0px 0px; */
+}
+/*
+------------------------------------
+  center content
+------------------------------------
+*/
+#content{
+	clear:both;
+	margin:0; 
+	padding:0;
+	/* background-color:#330099; */
+	 background-color:#ffffff; 
+}
+#content_main{
+	margin:0;
+	padding:1px 5px 5px 5px;
+}
+
+#content_main h2 {
+	font-size: 18px;
+	/*text-transform: uppercase;*/
+	margin:5px 0px;
+	padding:0px;
+}
+#content_main em {
+	color: #f00;
+}
+
+
+input:focus,textarea:focus,select:focus{
+	border:1px solid #000;
+	background-color:#FFDDAA;
+}
+
+form fieldset#orderGeneral legend{
+	font-weight:bold;
+}
+
+form fieldset#orderGeneral,form fieldset#orderWinsol {
+border: 2px solid #000;
+	background-color:white;
+}
+form fieldset#orderGeneral legend,form fieldset#orderWinsol legend {
+ color: #FFF;
+ background: #000;
+ font-size: 1.5em;
+ padding: 5px;
+}
+
+form fieldset#orderGeneral label{
+	font-weight:bold;
+	
+}
+
+form fieldset#orderWinsol dt label{
+	font-weight:bold;
+}
+ 
+/*
+------------------------------------------
+   ajax product choices
+------------------------------------------
+*/
+div#ajaxAddProduct div.productChoice {
+   
+    border:1px solid black;
+    width:50%;
+    float:left;
+    margin:0 0 3px 5px;
+    padding:5px;
+    color:black;
+	background-color: #F2FFD5;
+	height:auto;
+	font-weight:bold;
+}
+
+div#ajaxAddProduct div.productChoice:hover {
+	cursor: pointer;
+	background-color:#5BB470;
+}
+
+div#ajaxAddProduct div.selected {
+	background-color:#5BB470;
+}
+
+.pointer{
+	cursor: pointer;	
+}
+
+/*
+h1,h2,h3,h4,h5,h6{
+	display:block;
+}
+*/
+
+/*
+#contentvlak table{
+width:100%;
+border:none;
+}
+#contentvlak .nieuwsItem table{
+width:100%;
+background:#DDD;
+margin:15px 0px;
+}
+#contentvlak .nieuwsItem th{
+text-align:left;
+vertical-align:middle;
+background:#666;
+color:#FFF;
+}
+
+td, th {
+vertical-align: top;
+padding-left: 5px;
+}
+#contentvlak #overzicht table {
+background:#FFF;
+width: 100%;
+border: 1px solid #006699;
+}
+#contentvlak #overzicht td {
+border-bottom: 1px solid #006699;
+}
+#contentvlak #overzicht th {
+text-align: left;
+background-color: #006699;
+color: #ffffff;
+}
+#contentvlak #overzicht td.noBorder {
+border-bottom: none;
+}
+*/
+
+img{
+	border:none;
+}
+.tbnav{
+	text-align:right;
+	color:#000;
+	font-size:9px;
+	margin:2px 0px;
+	padding:0px;
+}
+
+input, select{
+padding:0;
+}
+/* -----------------------------
+ footer
+--------------------------------*/
+#footer{
+	height:5px;
+	/*background:url(../images/foot_bkgd.jpg) repeat-x #111;*/
+	background-position:top left;
+	margin:0px 0px 100px 0px;
+	padding:0px;
+}
+#footer p{
+	margin-top:5px;
+	padding:5px;
+}
+
+/*
+allan
+*/
+.bold{
+	font-weight:bold;
+}
+
+.error{
+	color: red;
+}
+
+.pad_5{
+	padding: 5px;
+}
+
+.pad_10{
+	padding: 10px;
+}
+
+.pad_LR_5{
+	padding: 0 5px;
+}
+
+
+a.paginator,a.paginator:active{
+    color: #0B1966; 
+    font-style: normal;
+    text-decoration: none;
+}
+
+a.paginator:visited{
+    color: #0B1966; 
+    font-style: normal;
+    text-decoration: none;
+}
+
+
+a.paginator:hover{
+    color:#009999;
+	font-style: normal;
+    text-decoration: underline;
+}
+
+
+.msg_error{
+	border:1px dashed red;
+	padding:10px;
+	text-align:left;
+	color:red;
+	margin: 0 5%; 
+	background-color:transparent;
+}
+
+.msg_ok{
+	border:1px dashed green;
+	padding:10px;
+	text-align:left;
+	color:black;
+	margin: 0 5%; 
+}
+
+
+/* Pagination */
+.pagination{
+	margin-bottom:20px;
+	color:white;
+}
+.pagination h3{
+	font-size:10px;
+}
+.pagination ul{
+	margin-left:10px;
+}
+.pagination ul li{ 
+	display:inline;
+	
+}
+.pagination ul li a	, .pagination ul li span{
+	background-color:#000000;
+	padding: 0 4px;
+	border:1px solid #606060;
+	text-decoration:none;
+	font-size:12px;
+	color:white;
+}
+.pagination ul li.current a,.pagination ul li a.current, .pagination ul li.current span, .pagination ul li :hover{
+		background-color: #7FA7D2;
+		color:#000000;
+		border-color:#000000;
+}
+
+.pagination ul li span.total
+{
+	font-size:14px;
+	background-color:transparent;
+	color:black;
+	border:0;
+	/* font-weight:bold; */
+}
+.pagination ul li span.disabled
+{
+	background-color:transparent; 
+	color:grey;
+	border:1px solid #c0c0c0
+}
+
+.pagination a.all{
+	display:block;
+	margin:20px 0 0 -5px;
+	color:#fff;
+}
+
+.pagination a.all span{
+	float:right;
+	font-size:18px;
+	position:relative;
+	right:30px;
+	top:-50px;
+}
+
+
+table.orderOverview
+{ width: 95%;
+	background-color: #fafafa;
+	border: 1px #000000 solid;
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+
+table.orderOverview thead th{
+	border:none;
+	text-align:left;
+}
+
+
+table.orderOverview td.contactDept
+{ background-color: #99CCCC;
+border: 1px #000000 solid;
+font-family: Verdana;
+font-weight: bold;
+font-size: 12px;
+color: #404040; }
+
+
+table.orderOverview td
+{ 
+	border-bottom: 1px #6699CC dotted;
+	text-align: left;
+	font-family: Verdana, sans-serif, Arial;
+	font-weight: normal;
+	font-size: .7em;
+color: #404040;
+background-color: #fafafa;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 8px;
+padding-right: 0px; }
+	
+	
+table.orderOverview tr.errors td{
+	/*background-color:darkred;
+	color:white;	*/
+	color:red;
+
+		
+}
+
+table.orderOverview tbody .datahighlight {
+        background-color: #ffdc87 !important;
+		cursor: pointer;
+}
+
+
+
+
+/* End Pagination */	
+.clear
+{
+	clear: both;
+}
+
+/*
+// --------------------------------
+Order product
+// --------------------------------
+*/ 
+
+table.orderProduct{
+	width:80%;	
+}
+	
+table.orderProduct th{
+	font-weight:bold;
+}
+
+ 
+ 
+

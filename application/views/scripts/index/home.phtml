@@ -1,0 +1,30 @@
+<h1>Upcoming tournements</h1>
+<?php echo $this->render('includes/datagrid/default.phtml'); ?>
+<table>
+    <tr>
+        <th>Tournement</th>
+        <th>Date</th> 
+        <th>Registration</th>
+    </tr>
+    <tr>
+<?php   foreach($this->upcomingTournements as $upcomingTournement) { ?>
+            <td><a href="/tournement/registration/id/<?php echo $upcomingTournement['ID'];?>"><?php echo $upcomingTournement['Description']; ?></a></td>
+            <td><?php echo $upcomingTournement['Date']; ?></td>
+            <td><?php echo $upcomingTournement['Registration'] ? 'OK' : 'NOK'; ?></td>
+<?php   } ?>
+    </tr>
+</table>
+<h1>Past tournements</h1>
+<table>
+    <tr>
+        <th>Tournement</th>
+        <th>Date</th> 
+        <th>Registration</th>
+    </tr>    
+    <tr>
+<?php   foreach($this->pastTournements as $pastTournement) { ?>
+            <td><a href="/tournement/registration/id/<?php echo $pastTournement['ID'];?>"><?php echo $pastTournement['Description']; ?></a></td>
+            <td><?php echo $pastTournement['Date']; ?></td>
+<?php   } ?>
+    </tr>
+</table>

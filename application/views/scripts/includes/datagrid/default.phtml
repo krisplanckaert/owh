@@ -1,0 +1,28 @@
+<?php 
+$this->jQuery()->onLoadCaptureStart();
+?>
+$('table.borders tr.row').hover(function(){
+			$(this).children().addClass('datahighlight');
+		},function(){
+			$(this).children().removeClass('datahighlight');
+		}).css({cursor: 'hand'});        
+
+		
+
+		
+        <?php 
+        
+$this->jQuery()->onLoadCaptureEnd();
+$this->headLink()->prependStylesheet('/base/datagrid/styles/default.css');
+if (!empty($this->messages)){ ?>
+	<div class="msg_ok" style="color:white;">
+<?php       $counter = 0;
+            foreach($this->messages as $v){
+                echo $this->translate($v);?><br /><?php echo PHP_EOL;
+            } ?>
+	</div>
+<?php } ?>
+<div style="width:900px;overflow:auto;">
+    <?php //Zend_Debug::dump($this->dataGrid); ?>
+    <?php echo $this->dataGrid; ?>
+</div>

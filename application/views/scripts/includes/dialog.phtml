@@ -1,0 +1,12 @@
+<?php echo $this->translate('errors');?>:
+<?php
+if (!empty($this->errors) && count($this->errors)) { ?>
+    <div id="errors"><?php echo PHP_EOL;?>
+<?php   echo $this->translate('Errors were encountered while processing your request');?>:<br />
+        <ul><?php echo PHP_EOL;
+            foreach($this->errors as $v) { ?>
+                <li><?php echo $this->escape($v);?></li><?php echo PHP_EOL;?>
+<?php       } ?>
+        </ul><?php echo PHP_EOL;?>
+    </div><?php echo PHP_EOL;
+}

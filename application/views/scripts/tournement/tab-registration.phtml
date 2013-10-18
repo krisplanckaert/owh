@@ -1,0 +1,15 @@
+<?php
+$tabName = 'registration';
+?>
+<a href="<?php echo $this->baseUrl() . '/tournement/detail/id/'.$this->tournement['ID'].'/tab/'.$tabName.'/page/list'; ?>" class="tab-nav"><?php echo $this->translate('List');?></a>
+| 
+<a href="<?php echo $this->baseUrl() . '/tournement/detail/id/'.$this->tournement['ID'].'/tab/'.$tabName.'/page/detail'; ?>" class="tab-nav"><?php echo $this->translate('Add');?></a>
+<br /><br />
+<?php 
+// ------------------------------------------------------
+
+if ($this->content['data']['page'] == 'detail'){
+    echo $this->content['form'];
+} else { 
+    echo $this->partial('partials/datagrid-default.phtml',null,array('datagrid' => $this->content['datagrid']));	
+}

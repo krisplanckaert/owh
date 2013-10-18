@@ -1,0 +1,10 @@
+<?php 
+$this->placeholder('mainTitle')->set('User');
+// ------------------------------------------------------
+echo $this->headScript()->prependFile('/base/js/jquery/jquery.min.js'); #todo this should always be included, perhaps in layout
+echo $this->render('/includes/js/default.phtml');
+
+echo $this->form;
+?>
+<a href="<?php echo $this->url(array('controller' => $this->controller,'action' => 'list'),NULL,TRUE);?>"><?php echo $this->translate('Back to the list',1); ?></a>
+

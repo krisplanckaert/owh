@@ -1,0 +1,74 @@
+@charset "utf-8";
+/* CSS Document */
+.rc_box{
+	/* width:760px; */
+	
+	padding:0 9px;
+	/* margin:30px auto; */
+	position:relative;
+	border:1px solid #fff;/* stop margin collapse*/
+	border-left:1px solid #000;
+	border-right:1px solid #000;
+	z-index:2;
+	min-height:0;/* ie7 layout fix*/
+}
+
+.rc_inner{
+	 background-color:#FFFFFF; 
+	padding:10px 0;
+	margin:-10px 0;
+	min-height:0;/* ie7 haslayout issues fix*/
+	position:relative;
+	border-top:1px solid #000;
+	border-bottom:1px solid #000;
+	z-index:2;
+}
+* html .rc_inner, * html .rc_box{
+	height:1px; /* ie6 layout fix */
+}
+	 
+.rc_inner .rc_top,.rc_inner .rc_base{
+	margin:-11px -10px 0;
+	/* background-image:url(../images/c_bw_2.png);  */
+	background-repeat:no-repeat;
+	height:10px;
+	position:relative;
+	font-size:10px;
+	clear:both;
+	z-index:-1;/* drag corner under background*/
+}
+.rc_inner .rc_base{
+	background-position:left bottom;
+	margin:0 -10px -11px;
+}
+.rc_inner .rc_top span,.rc_inner .rc_base span{
+	/* background-image:url(../images/c_bw_1.png); */
+	background-repeat:no-repeat;
+	display:block;
+	height:10px;
+	font-size:10px;
+}
+.rc_inner .rc_top span{
+	background-position:right top; 
+}	
+
+.rc_inner .rc_base span{
+	background-position:right bottom;
+}
+	
+.rc_inner .rc_content{
+	width:100%;
+	background:#fff;
+	margin:-9px 0 -17px;
+}
+
+.rc_inner p{
+	padding:5px;
+	margin:0 0 .5em 0;
+}	
+	
+.rc_base span{background-position:right bottom;}
+.rc_content{width:100%;background:#fff;margin:-9px 0 -17px}
+* html .rc_content{margin:-12px 0}/* ie fails again*/
+*+html .rc_content{margin:-9px 0}/* ie7*/
+

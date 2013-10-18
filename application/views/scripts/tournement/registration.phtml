@@ -1,0 +1,23 @@
+<?php 
+// ------------------------------------------------------
+    echo $this->form;
+    //Zend_Debug::dump($this->overview);
+?>
+
+<h1>Overview registered teams</h1>
+<table>
+<?php foreach($this->overview as $registration) { ?>
+        <tr>
+            <td><?php echo $registration['Team'];?></td>
+        </tr>
+<?php   foreach($registration['Players'] as $player) { ?>
+            <tr>
+                <td></td>
+                <td><?php echo $player;?></td>
+            </tr>            
+<?php   } ?>        
+<?php } ?>    
+</table>
+
+
+    

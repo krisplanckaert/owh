@@ -1,0 +1,6 @@
+<?php
+foreach((array)$this->selectOptions as $k=>$v){ ?>
+    <option value="<?php echo (int)$k;?>" ><?php echo $this->translate($v,1);?></option><?php echo PHP_EOL;
+}
+
+?>

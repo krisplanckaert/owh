@@ -1,0 +1,82 @@
+<?php 
+// -------------------------
+header('Content-Type: text/html; charset=utf-8');
+echo '<?xml version="1.0" encoding="UTF-8" ?>'.PHP_EOL;
+echo $this->doctype().PHP_EOL; ?>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+    <head>
+<?php   echo $this->headMeta().PHP_EOL;
+        echo $this->headTitle().PHP_EOL;
+        echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/admin.css').PHP_EOL;
+        echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/default.css').PHP_EOL;
+        echo $this->jQuery(); //.PHP_EOL;
+        echo $this->headScript()
+                ->prependFile($this->baseUrl().'/js/default.js');
+        echo $this->headLink() . PHP_EOL;
+        echo $this->headStyle() . PHP_EOL; ?>
+    </head>
+    <body>
+        <div id="wrapper">
+            <!-- begin header -->
+            <div id="header" >
+                <div id="brand" >
+<?php /*
+                    <span style="font-size:150%;color:white;">
+                         <a href="<?php echo $this->url(array(
+                                                                'controller' => 'index',
+                                                                'action' => 'home',
+                                                                'lang' => 'nl',
+                                                        ),NULL,TRUE);?>" style="<?php echo $this->selectedLang=='nl' ? 'font-weight:bold;color:white' : 'color:gray;';?>">nl
+                        </a> |
+                        <a href="<?php echo $this->url(array(
+                                                                'controller' => 'index',
+                                                                'action' => 'home',
+                                                                'lang' => 'fr',
+                                                        ),NULL,TRUE);?>" style="<?php echo $this->selectedLang=='fr' ? 'font-weight:bold;color:white;' : 'color:gray;';?>">fr
+                        </a>
+                    </span>
+ */?>
+                    <h1 align="center" style="color:black;">BELGIUM UWH</h1>
+                </div>
+                <p style="font-size:18px;color:white;"></p>
+                <div id="nav" >
+                    <?php $this->auth = Zend_Auth::getInstance()->getIdentity(); ?>
+                    <?php echo $this->render('/includes/nav-admin.phtml');?>
+                </div>
+            </div>
+            <!-- end header -->
+            <!-- begin center -->
+            <div id="content">
+<?php           
+                if (!empty($this->auth->Username) ) { ?>
+                    <div style="float:left;padding:2px 5px;font-size:75%;">
+                        <?php echo $this->translate('Welcom') . ' ' . $this->escape($this->auth->Username); ?>, <a href="<?php echo $this->baseUrl() . '/teamuser/logout'; ?>">Logout</a>
+                    </div>
+                    <div style="float:right;width:100px;border:1px dotted gray;padding:2px 5px;font-size:85%;text-align:center;" class="bold">
+                        <a href="<?php echo $this->url(array(
+                                                            'controller' => 'teamuser',
+                                                            'action' => 'my-profile',
+                                                    ),NULL,TRUE);?>" style="display:block;text-decoration:none;"><?php echo $this->translate('My profile'); ?>
+                        </a>
+                    </div>                
+                    <br clear="all" />
+<?php           } ?>
+                <br clear="all" />
+                <div id="content_main">
+                    <div class="mainTitle" ><?php echo $this->translate($this->placeholder('mainTitle')); ?></div>
+                    <!-- begin main content -->
+                    <?php echo $this->layout()->content; ?>
+                    <!-- end main content -->
+                </div>
+            </div>
+            <!-- end center -->
+            <!-- begin footer -->
+            <div id="footer">
+                <p style="float:right;text-align:right;width:40%;">
+                    <span style="font-size:80%;">&copy; Copyright KPT, 2011-2015 | Webdesign by <a href="http://www.owh.be/" target="_blank" title="OWH" >OWH</a></span>
+                </p>
+            </div>
+            <!-- end footer -->
+        </div>
+    </body>
+</html>

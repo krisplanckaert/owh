@@ -1,0 +1,34 @@
+<?php 
+$this->placeholder('mainTitle')->set('Chamionship');
+
+// --------------------------------
+if (!empty($this->championship)){
+    echo $this->ChampionshipHelper('viewInfo',array('data' => $this->championship));
+}
+if (!empty($this->messages)){ ?>
+    <div class="msg_ok" style="color:white;">
+<?php   foreach($this->messages as $v){
+            echo $this->escape($v) . '<br />' .  PHP_EOL;
+        } ?>
+    </div>
+<?php }
+
+//@todo: view helper
+$this->tabPane('myTabContainer', $this->partial('championship/tab-championship.phtml',array('championship' => $this->championship,'form' => $this->form)),array('title' => $this->translate('Championship',3)));
+
+if (!empty($this->championship)){
+    $this->tabPane('myTabContainer', $this->partial('championship/tab-tournement.phtml',array(
+                                                    'championship'   => $this->championship,
+                                                    'content'      => $this->tabs['tournement'],
+                                                )
+					),array('title' => $this->translate('Tournement',3)));
+}
+
+echo $this->tabContainer('myTabContainer',
+                            array('selected' => $this->selectedTabIndex),
+                            array('class' => 'start', 'width' => 300),
+                            array('class' => 'start')
+						
+);
+
+?>

@@ -1,0 +1,30 @@
+<?php
+
+$this->headScript()->captureStart(); ?>
+
+
+$(document).ready(function() {	
+	
+     
+	 $('input[type=checkbox].singleSelect').live('click', function(event) {   
+	 	
+    	var elemName = $(this).attr('name');
+    	$('input[name='+elemName+'].singleSelect').each(function() {
+        	$(this)[0].checked = false;
+        	});
+        $(this)[0].checked = true;
+        	
+
+    	//alert('elem name = ' + elemName);
+       	//var newValue = $(this).val().replace(/[^0-9]/g,'');
+       // $(this).val(newValue);
+     });       
+  
+});  
+
+
+
+
+
+
+<?php $this->headScript()->captureEnd();  ?>

@@ -1,0 +1,21 @@
+<?php
+$tabName = 'game';
+?>
+<a href="<?php echo $this->baseUrl() . '/tournement/detail/id/'.$this->tournement['ID'].'/tab/'.$tabName.'/page/list'; ?>" class="tab-nav"><?php echo $this->translate('List');?></a>
+| 
+<a href="<?php echo $this->baseUrl() . '/tournement/detail/id/'.$this->tournement['ID'].'/tab/'.$tabName.'/page/detail'; ?>" class="tab-nav"><?php echo $this->translate('Add');?></a>
+<br /><br />
+<?php 
+// ------------------------------------------------------
+
+if ($this->content['data']['page'] == 'detail'){
+    echo $this->content['form'];
+} else { 
+    $formAction = $this->baseUrl() . '/game/process/id/'.$this->tournement['ID'].'/tab/'.$tabName.'/page/list'; ?>
+    <form name="frmListDetails" action="<?php echo $formAction;?>" method="post" >
+<?php echo $this->partial('partials/datagrid-default.phtml',null,array('datagrid' => $this->content['datagrid'])); ?>
+        <div style="text-align:right;width:800px;">
+<?php       echo $this->formSubmit('btn_detailListUpdate','Update',array('onclick' => "return confirmText('Really update?');"));?>
+        </div>
+    </form>    
+<?php } ?>

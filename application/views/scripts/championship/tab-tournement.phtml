@@ -1,0 +1,8 @@
+<table>
+<?php   foreach($this->content as $v) { ?>
+            <tr>
+                <td><a href="/tournement/detail/id/<?php echo $v['ID'];?>"><?php echo $v['Description']; ?></a></td>             
+                <td><?php echo $v['Date'];?></td>  
+            </tr>
+<?php   } ?>
+</table>

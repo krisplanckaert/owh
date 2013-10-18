@@ -1,0 +1,11 @@
+<?php
+if (!empty($this->messages)){ ?>
+    <div class="msg_ok" style="color:white;">
+<?php   foreach($this->messages as $v){
+            echo $this->escape($v) . '<br />' .  PHP_EOL;
+        } ?>
+    </div>
+<?php }
+
+echo $this->form;
+

@@ -1,0 +1,11 @@
+<tfoot>
+    <tr>
+        <td colspan="2" style="border-top:1px dashed black;">
+<?php       foreach($this->element->getElements() as $element){
+                $elementName = $element->getName();
+                echo $element;
+            } ?>
+        </td>
+    </tr>
+</tfoot>
+

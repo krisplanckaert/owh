@@ -1,0 +1,40 @@
+<?php if ($this->pageCount) { ?>
+<div class="pagination clear" style="float:right;margin:0;">
+    <ul style="margin:5px;padding:0;">
+	<li>
+            <span class="total">
+                <?php echo $this->firstItemNumber.'-'.$this->lastItemNumber.'/'.$this->totalItemCount; ?>
+            </span>
+	</li>
+	<li>
+<?php       if (isset($this->previous))	{ ?>
+                <a href="<?php echo $this->url(array('page' => $this->previous));?>">&lt;&lt; prev</a>
+<?php       } else { ?>
+                <span class="disabled">&lt;&lt; prev</span>
+<?php       } ?>
+	</li>
+<?php 	foreach($this->pagesInRange as $page) {
+            $isCurrent = false;
+            $className = '';
+            if ($page==$this->current) {
+                $isCurrent = true;
+                $className = 'current';
+            } ?>
+            <li class="<?php echo $className;?>">
+<?php           if (!$isCurrent) { ?>
+                    <a href="<?php echo $this->url(array('page' => $page));?>"><?php echo htmlentities($page);?></a>
+<?php           } else { /*current page */ ?>
+                    <span><?php echo (int)$this->current;?></span>
+<?php           } ?>
+            </li><?php echo PHP_EOL;?>
+<?php	} ?>
+	<li>
+<?php       if (isset($this->next)) { ?>
+		<a href="<?php echo $this->url(array('page' => $this->next));?>">next &gt;&gt;</a>
+<?php       } else { ?>
+		<span class="disabled">next &gt;&gt;</span>
+<?php       } ?>
+	</li>
+    </ul>
+</div>
+<?php } ?>

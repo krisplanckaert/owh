@@ -1,0 +1,40 @@
+<?php 
+$this->placeholder('mainTitle')->set('Tournement');
+
+// --------------------------------
+if (!empty($this->tournement)){
+    echo $this->TournementHelper('viewInfo',array('data' => $this->tournement));
+}
+
+if (!empty($this->messages)){ ?>
+    <div class="msg_ok" style="color:white;">
+<?php   foreach($this->messages as $v){
+            echo $this->escape($v) . '<br />' .  PHP_EOL;
+        } ?>
+    </div>
+<?php }
+
+//@todo: view helper
+$this->tabPane('myTabContainer', $this->partial('tournement/tab-tournement.phtml',array('tournement' => $this->tournement,'form' => $this->form)),array('title' => $this->translate('Tournement',3)));
+
+if (!empty($this->tournement)){
+    $this->tabPane('myTabContainer', $this->partial('tournement/tab-registration.phtml',array(
+                                                    'tournement'   => $this->tournement,
+                                                    'content'      => $this->tabs['registration'],
+                                                )
+					),array('title' => $this->translate('Registrations',3)));
+    $this->tabPane('myTabContainer', $this->partial('tournement/tab-game.phtml',array(
+                                                    'tournement'   => $this->tournement,
+                                                    'content'      => $this->tabs['game'],
+                                                )
+					),array('title' => $this->translate('Games',3)));
+}
+//Zend_Debug::dump($this->tabs['game']);
+echo $this->tabContainer('myTabContainer',
+                            array('selected' => $this->selectedTabIndex),
+                            array('class' => 'start', 'width' => 300),
+                            array('class' => 'start')
+						
+);
+
+?>

@@ -1,0 +1,135 @@
+<?php
+//echo '<?xml version="1.0" encoding="'.$_page['encoding'].'"."\r\n"; 
+echo $this->doctype().PHP_EOL; 
+?>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<?php 
+echo $this->headMeta().PHP_EOL;
+echo $this->headTitle().PHP_EOL;
+echo $this->headScript().PHP_EOL;
+echo $this->headLink()
+->prependStylesheet($this->baseUrl() . '/css/login.css')
+->prependStylesheet($this->baseUrl() . '/css/rc.css')
+.PHP_EOL;
+?>
+<script type="text/javascript" src="/base/js/jquery/jquery.min.js"></script>
+
+<style type="text/css">
+.btn_02{
+	cursor:pointer; 
+	/* border:outset 1px #ccc;	 */
+	border:1px dotted #000;
+	background-color:#FFFFCC;
+	/* color:#666; */
+	color:black;
+	font-weight:normal;
+	padding: 1px 2px;
+	/* background:url(media/formbg.gif) repeat-x left top; */
+}
+
+div.error {
+	border:1px solid black;
+	background-color:darkred;
+	color:white;
+	padding:10px;	
+}
+
+div.msg {
+	border:1px solid black;
+	background-color:darkgreen;
+	color:white;
+	padding:10px;	
+}
+</style>
+<?php 
+//$this->jQuery()->onLoadCaptureStart();
+// $this->jQuery()->onLoadCaptureEnd();
+/*
+?>
+<script type="text/javascript">
+$(document).ready(function() {
+	if ($(".ui-dialog-content").dialog( "isOpen" )){
+		$(".ui-dialog-content").dialog("close");
+		window.location = '/';
+	}
+});
+</script>
+<?php
+*/
+?>
+</head>
+<body>
+    <div class="companyLogo"></div>
+    <div class="wrapper">
+        <div class="wrapperTop" >
+<?php
+            //todo : make it more generic
+            if (isset($this->data['err'])){
+		switch ($this->data['err']) {
+                    case 1 :
+                        $msg = 'Access denied'; break;
+                    default :
+                        $msg = 'Unknown error';
+		} ?>
+		<div class="error"> <?php echo $this->escape($msg);?></div>
+<?php       } else if (isset($this->data['msg'])) {
+		switch ($this->data['msg']) {
+                    case 1 :
+                        $msg = 'Password reset successful.'; break;
+                    default :
+                        $msg = 'Logout successfull';
+		} ?>
+		<div class="msg"> <?php echo $this->escape($msg);?></div>
+<?php       }	?>
+        </div>
+        <!-- begin rc box -->
+        <div class="rc_box">
+            <div class="rc_inner">
+                <div class="icon_tr2"></div>
+                <div class="rc_top" >
+                    <span style="text-align:right;"><img src="/<?php echo $this->appName;?>/images/login/corner_tr.png" alt="" style="float:right;padding:0;" /></span>
+                </div>
+                <div id="header">
+                    <span class="italic">Restricted Area</span>
+                    <div class="divider2">&raquo; UWH - Login</div>
+                </div>
+                <!-- begin main content -->
+                <div id="content" >
+                    <div class="inner" >
+                        <form action="<?php echo $this->url(array('controller' => 'teamuser','action' => 'login'));?>" name="frm_login" method="post" >
+                            <table cellpadding="1" cellspacing="0" style="margin-left:10px;margin-bottom:4px;">
+                                <tr>
+                                    <td style="text-align:left;">Username</td>
+                                    <td nowrap="nowrap">: <?php echo $this->formText('Username','',array('class' => 'normal')); ?></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:left;">Password</td>
+                                    <td nowrap="nowrap">: <?php echo $this->formPassword('Password','',array('class' => 'normal')); ?></td>
+                                </tr>
+                            </table>
+                            <p style="float:right;"><input type="submit" name="btn_submit" value="Login" class="btn_02" /></p><br clear="all" />
+                            <p style="float:left;font-size:80%;">
+                                Forgot password? <a href="<?php echo $this->url(array('controller' => 'teamuser','action' => 'lost'),null,true);?>" style="color:black;">Click here</a><br/>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+                <!-- end main content -->
+                <div class="rc_base"><span></span></div>
+            </div>
+            <!-- end rc inner -->
+        </div>
+        <!-- end rc box -->
+        <!-- begin footer -->
+<?php 
+	//include(PATH_WWW_INC.'footer.inc.php');
+?>
+        <div id="footer">
+            <span>
+            </span>
+        </div>
+<!-- end footer -->
+    </div>
+</body>
+</html>

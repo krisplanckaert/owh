@@ -1,0 +1,11 @@
+<?php 
+$this->placeholder('mainTitle')->set($this->translate('Teams'));
+// ------------------------------------------------------
+?>
+<a href="<?php echo $this->baseUrl() . '/team/detail'; ?>" class="tab-nav">
+<img src="/base/images/icons/create.png" title="<?php echo $this->translate('Create',1); ?>" />
+</a>
+<?php 
+
+echo $this->render('includes/datagrid/default.phtml');
+
