@@ -13,25 +13,25 @@ class IndexController extends My_Controller_Action
         date_default_timezone_set('UTC');
         $date = date('Ymd');
         $where = 'Date > ' . $date;
-        $tournementModel = new Application_Model_Tournement();
+        $championshipdayModel = new Application_Model_Championshipday();
         $registrationModel = new Application_Model_Registration();        
-        $upcomingTournements = $tournementModel->getAll($where);
-        foreach($upcomingTournements as $k => $upcomingTournement) {
+        $upcomingChampionshipdays = $championshipdayModel->getAll($where);
+        foreach($upcomingChampionshipdays as $k => $upcomingChampionshipday) {
             $fields = array(
-                'ID_Tournement' => $upcomingTournement['ID'],
+                'ID_ChampionshipDay' => $upcomingChampionshipday['ID'],
                 'ID_Team' => $this->authUser['ID_Team'],
             );
             $registration = $registrationModel->getOneByFields($fields);
             if($registration) {
-                $upcomingTournements[$k]['Registration']=true;
+                $upcomingChampionshipdays[$k]['Registration']=true;
             } else {
-                $upcomingTournements[$k]['Registration']=false;              
+                $upcomingChampionshipdays[$k]['Registration']=false;              
             }
         }
-        $this->view->upcomingTournements = $upcomingTournements;
+        $this->view->upcomingChampionshipdays = $upcomingChampionshipdays;
 
         $where = 'Date <= ' . $date;
-        $this->view->pastTournements = $tournementModel->getAll($where);
+        $this->view->pastChampionshipdays = $championshipdayModel->getAll($where);
     }    
 }
 

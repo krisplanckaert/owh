@@ -1,5 +1,5 @@
 <?php
-class TournementController extends My_Controller_Action 
+class ChampionshipdayController extends My_Controller_Action 
 {   
     protected $child = array();
     
@@ -11,7 +11,7 @@ class TournementController extends My_Controller_Action
     protected $tabIndexCounter = -1;
     protected $selectedTabIndex = 0;    
     
-    protected $parentTab = 'tournement';
+    protected $parentTab = 'championshipday';
 
     public function init() {
     	parent::init();  
@@ -29,9 +29,9 @@ class TournementController extends My_Controller_Action
     public function registrationAction() {
         $data = $this->_getAllParams();
         $registrationModel = new Application_Model_Registration();
-        $tournement = $this->model->getOne($data['id']);
+        $championshipday = $this->model->getOne($data['id']);
         $fields = array(
-            'ID_Tournement' => $data['id'],
+            'ID_ChampionshipDay' => $data['id'],
             'ID_Team' => $this->authUser['ID_Team'],
         );
         $registration = $registrationModel->getOneByFields($fields);
@@ -49,13 +49,13 @@ class TournementController extends My_Controller_Action
         
         date_default_timezone_set('UTC');
         $date = date('Y-m-d');
-        if($tournement['Date']>$date) {
+        if($championshipday['Date']>$date) {
             $this->view->form = new Application_Form_Registration($id, $options, $params);
             $this->view->form->populate($registration);
         } else {
             $this->view->form = null;
         }
-        $this->view->overview = $registrationModel->getOverviewByTournement($data['id']);
+        $this->view->overview = $registrationModel->getOverviewByChampionshipDay($data['id']);
     }    
     
     public function detailAction() {
@@ -65,8 +65,8 @@ class TournementController extends My_Controller_Action
         $this->view->loadedTabs = $this->tabIndex;
         
         $this->formMultiple = TRUE;
-        $this->id          = (int)$this->_getParam('id'); // get tournementId
-        $this->selectedTab = $this->view->selectedTab = $this->_getParam('tab','tournement');
+        $this->id          = (int)$this->_getParam('id'); // get championshipdayId
+        $this->selectedTab = $this->view->selectedTab = $this->_getParam('tab','championshipday');
 
         $this->view->messages = $this->flashMessenger->getMessages();
         
@@ -83,7 +83,7 @@ class TournementController extends My_Controller_Action
                 $this->id = $data['id'] = (int) $this->modelData['ID']; //klantId
             }
             $this->baseLink .= '/id/' . $this->id;
-            $this->view->tournement = $this->modelData;
+            $this->view->championshipday = $this->modelData;
         }
 
         // ---------------
@@ -91,12 +91,12 @@ class TournementController extends My_Controller_Action
         // ---------------------------------
       	$this->child['id'] = $this->_getParam('childId', NULL);	  
       	$this->view->tabs = array(
-			'tournement'   	=> '',
-			'registration'  => '',
-                        'game'          => '',
+			'championshipday'   => '',
+			'registration'      => '',
+                        'game'              => '',
         );
     	//tab 1 = parent tab
-        $this->tabTournement('tournement',$data);
+        $this->tabChampionshipday('championshipday',$data);
         if (empty($this->id) || empty($this->modelData)){
             //parent is  unknown, so we can't load other tabs because they are related
             return;
@@ -109,7 +109,7 @@ class TournementController extends My_Controller_Action
         $this->view->selectedTabIndex = array_key_exists($this->selectedTab, $this->tabIndex) ? (int)$this->tabIndex[$this->selectedTab] : $this->view->selectedTabIndex ;
     }   
     
-    protected function tabTournement($tabName, $data) 
+    protected function tabChampionshipday($tabName, $data) 
     {
         $this->tabIndex[$tabName] = ++$this->tabIndexCounter;
         $this->view->loadedTabs = $this->tabIndex;
@@ -140,7 +140,7 @@ class TournementController extends My_Controller_Action
         $formParams = array(
             'tabName'    => $tabName,
             'parentId'   => $this->id,
-            'ID_Tournement' => $this->id,
+            'ID_ChampionshipDay' => $this->id,
             'childId'    => $this->child['id'], // orderId
         );	
       
@@ -161,10 +161,10 @@ class TournementController extends My_Controller_Action
             'action' => '/' . $this->getRequest()->getControllerName() . '/detail/id/' . $this->id . '/tab/'.$tabName.'/page/detail',
         );
         $formParams = array(
-            'tabName'    => $tabName,
-            'parentId'   => $this->id,
-            'ID_Tournement' => $this->id,
-            'childId'    => $this->child['id'], // orderId
+            'tabName'            => $tabName,
+            'parentId'           => $this->id,
+            'ID_ChampionshipDay' => $this->id,
+            'childId'            => $this->child['id'], // orderId
         );	
       
         $gameId = (int)$this->child['id'];

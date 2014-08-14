@@ -17,11 +17,11 @@ if (!empty($this->messages)){ ?>
 $this->tabPane('myTabContainer', $this->partial('championship/tab-championship.phtml',array('championship' => $this->championship,'form' => $this->form)),array('title' => $this->translate('Championship',3)));
 
 if (!empty($this->championship)){
-    $this->tabPane('myTabContainer', $this->partial('championship/tab-tournement.phtml',array(
+    $this->tabPane('myTabContainer', $this->partial('championship/tab-championshipday.phtml',array(
                                                     'championship'   => $this->championship,
-                                                    'content'      => $this->tabs['tournement'],
+                                                    'content'      => $this->tabs['championshipday'],
                                                 )
-					),array('title' => $this->translate('Tournement',3)));
+					),array('title' => $this->translate('Championshipday',3)));
 }
 
 echo $this->tabContainer('myTabContainer',

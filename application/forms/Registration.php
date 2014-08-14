@@ -6,21 +6,21 @@ class Application_Form_Registration extends My_Form
     protected $isChild = TRUE;
     protected $parentId;
     protected $productGroup;
-    protected $tournement;    
+    protected $chamionshipday;    
     protected $_defaultFormOptions = array(
                            'name' => 'frmDetail',
                            'method' => 'post',
      );
 	
-    protected function getTournement(){
-        return $this->tournement;
+    protected function getChapionshipday(){
+        return $this->chamionshipday;
     }
 
-    protected function setTournement($id_tournement){
-        $tournementModel = new Application_Model_Tournement();
-        $this->tournement =  $tournementModel->getOne((int)$id_tournement);
-        if (empty($this->tournement)){
-                throw new Exception('Tournement unknown');
+    protected function setChampionshipday($id_chamionshipday){
+        $championshipdayModel = new Application_Model_Championshipday();
+        $this->championshipdat =  $championshipdayModel->getOne((int)$id_chamionshipday);
+        if (empty($this->championshipdat)){
+                throw new Exception('Championshipdat unknown');
         }
     }
     
@@ -40,11 +40,11 @@ class Application_Form_Registration extends My_Form
         $this->setModel($registrationModel);
         $this->setModelData($params['childId']);
 
-        $tournementModel = new Application_Model_Tournement();
-        $tournement = $tournementModel->getOne($this->parentId);
-        $tournementdescription = new My_Form_Element_Note('Tournement');
-        $tournementdescription->setLabel('Tournement')
-             ->setValue($tournement['Description'])
+        $championshipdayModel = new Application_Model_Championshipday();
+        $championshipday = $championshipdayModel->getOne($this->parentId);
+        $championshipdaydescription = new My_Form_Element_Note('ChampionshipDay');
+        $championshipdaydescription->setLabel('Championshipdat')
+             ->setValue($championshipday['Description'])
              ->setDecorators(array('ViewHelper'))                    
         ;
 
@@ -86,7 +86,7 @@ class Application_Form_Registration extends My_Form
                 ->setFilters(array('StringTrim', 'StripTags'))
         ;
         
-        $this->addElements(array($tournementdescription, $team, $player));
+        $this->addElements(array($championshipdaydescription, $team, $player));
         $this->setElementDecorators($this->elementDecorators);
         
         // save
@@ -115,8 +115,8 @@ class Application_Form_Registration extends My_Form
         ;        
         // -----------------------------------
         // Hidden fields
-        $tournement = new Zend_Form_Element_Hidden('ID_Tournement');
-        $tournement->setDecorators(array('ViewHelper'))
+        $championshipday = new Zend_Form_Element_Hidden('ID_ChampionshipDay');
+        $championshipday->setDecorators(array('ViewHelper'))
                 ->setValue((int) $this->parentId);        
         $tab = new Zend_Form_Element_Hidden('tabName');
         $tab->setDecorators(array('ViewHelper'))
@@ -125,7 +125,7 @@ class Application_Form_Registration extends My_Form
         $child->setDecorators(array('ViewHelper'))
               ->setValue((int)$this->childId);
         
-        $hiddenElems = array($tournement, $tab, $child);
+        $hiddenElems = array($championshipday, $tab, $child);
         $this->addElements($hiddenElems);        
     }
     

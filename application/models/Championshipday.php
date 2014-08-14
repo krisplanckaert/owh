@@ -1,7 +1,7 @@
 <?php
-class Application_Model_Tournement extends My_Model
+class Application_Model_Championshipday extends My_Model
 {
-    protected $_name = 'tournements'; //table name
+    protected $_name = 'championshipdays'; //table name
     protected $_id   = 'ID'; //primary key
     
     protected $enableDataGrid = TRUE;      
@@ -35,7 +35,7 @@ class Application_Model_Tournement extends My_Model
         ;
 
         $source = new Bvb_Grid_Source_Zend_Select($select);
-        $this->dataGrid->setGridId('tournement');
+        $this->dataGrid->setGridId('championshipday');
         $this->dataGrid->setSource($source);
     	//2. specify columns
         $this->dataGrid->updateColumn('ID', array('hidden' => true));
@@ -48,7 +48,7 @@ class Application_Model_Tournement extends My_Model
         ));    
         $this->dataGrid->updateColumn('Date',array(
                             'title'		=> 'Date',
-                            'decorator' => '<a href="/tournement/detail/id/{{ID}}">{{Date}}</a>',
+                            'decorator' => '<a href="/championshipday/detail/id/{{ID}}">{{Date}}</a>',
                             'position'  => 20,
         ));    
         

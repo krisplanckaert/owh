@@ -1,6 +1,6 @@
 <?php
 
-class Application_Form_Tournement extends My_Form
+class Application_Form_Championshipday extends My_Form
 {
     protected $_defaultFormOptions = array(
                            'name' => 'frmDetail',
@@ -10,7 +10,7 @@ class Application_Form_Tournement extends My_Form
 
     public function __construct($id = NULL, $options = NULL, $params = NULL)
     {
-        $this->_defaultFormOptions['action'] = '/tournement/detail'; //@todo: build action automatic, based on application and controller
+        $this->_defaultFormOptions['action'] = '/championshipday/detail'; //@todo: build action automatic, based on application and controller
         $options = !empty($options) ? array_merge($this->_defaultFormOptions,(array)$options) : $this->_defaultFormOptions;
         parent::__construct($id, $options);
 

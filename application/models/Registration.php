@@ -7,11 +7,11 @@ class Application_Model_Registration extends My_Model
     protected $enableDataGrid = TRUE;      
     protected $onlyActiveRows = TRUE;
     
-    public function getOverviewByTournement($tournementId) {
+    public function getOverviewByChampionshipday($championshipdayId) {
         $registrationplayerModel = new Application_Model_Registrationplayer();
         $playerModel = new Application_Model_Player();
         $teamModel = new Application_Model_Team();        
-        $where = 'ID_Tournement='.$tournementId;
+        $where = 'ID_ChampionshipDay='.$championshipdayId;
         $registrations = $this->getAll($where);
         $return = $registrations;
         foreach($registrations as $k => $v) {
@@ -48,7 +48,7 @@ class Application_Model_Registration extends My_Model
        
         if(!$id) {
             $fields = array(
-                'ID_Tournement' => $data['ID_Tournement'],
+                'ID_ChampionshipDay' => $data['ID_ChampionshipDay'],
                 'ID_Team' => $data['ID_Team'],
             );
             $registration = $this->getOneByFields($fields, 'AND', false);
@@ -62,7 +62,7 @@ class Application_Model_Registration extends My_Model
             }
         }
         $dbFields = array(
-            'ID_Tournement' => $data['ID_Tournement'],
+            'ID_ChampionshipDay' => $data['ID_ChampionshipDay'],
             'ID_Team' => $data['ID_Team'],
         );
 
@@ -94,11 +94,11 @@ class Application_Model_Registration extends My_Model
         $this->dataGrid->updateColumn('ID', array('hidden' => true));
         $this->dataGrid->updateColumn('ID_Status', array('hidden' => true));
         $this->dataGrid->updateColumn('ID_Team', array('hidden' => true));      
-        $this->dataGrid->updateColumn('ID_Tournement', array('hidden' => true));         
+        $this->dataGrid->updateColumn('ID_Chamionship', array('hidden' => true));         
         
         $this->dataGrid->updateColumn('Team',array(
                             'title'		=> 'Team',
-                            'decorator' => '<a href="/tournement/detail/id/{{ID_Tournement}}/tab/registration/page/detail/childId/{{ID}}">{{Team}}</a>',            
+                            'decorator' => '<a href="/championship/detail/id/{{ID_ChampionshipDay}}/tab/registration/page/detail/childId/{{ID}}">{{Team}}</a>',            
                             'position'  => 20,
         ));  
  

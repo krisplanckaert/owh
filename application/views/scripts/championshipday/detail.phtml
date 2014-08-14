@@ -1,9 +1,9 @@
 <?php 
-$this->placeholder('mainTitle')->set('Tournement');
+$this->placeholder('mainTitle')->set('championshipday');
 
 // --------------------------------
-if (!empty($this->tournement)){
-    echo $this->TournementHelper('viewInfo',array('data' => $this->tournement));
+if (!empty($this->championshipday)){
+    echo $this->championshipdayHelper('viewInfo',array('data' => $this->championshipday));
 }
 
 if (!empty($this->messages)){ ?>
@@ -15,16 +15,16 @@ if (!empty($this->messages)){ ?>
 <?php }
 
 //@todo: view helper
-$this->tabPane('myTabContainer', $this->partial('tournement/tab-tournement.phtml',array('tournement' => $this->tournement,'form' => $this->form)),array('title' => $this->translate('Tournement',3)));
+$this->tabPane('myTabContainer', $this->partial('championshipday/tab-championshipday.phtml',array('championshipday' => $this->championshipday,'form' => $this->form)),array('title' => $this->translate('Championshipday',3)));
 
-if (!empty($this->tournement)){
-    $this->tabPane('myTabContainer', $this->partial('tournement/tab-registration.phtml',array(
-                                                    'tournement'   => $this->tournement,
+if (!empty($this->championshipday)){
+    $this->tabPane('myTabContainer', $this->partial('championshipday/tab-registration.phtml',array(
+                                                    'championshipday'   => $this->championshipday,
                                                     'content'      => $this->tabs['registration'],
                                                 )
 					),array('title' => $this->translate('Registrations',3)));
-    $this->tabPane('myTabContainer', $this->partial('tournement/tab-game.phtml',array(
-                                                    'tournement'   => $this->tournement,
+    $this->tabPane('myTabContainer', $this->partial('championshipday/tab-game.phtml',array(
+                                                    'championshipday'   => $this->championshipday,
                                                     'content'      => $this->tabs['game'],
                                                 )
 					),array('title' => $this->translate('Games',3)));

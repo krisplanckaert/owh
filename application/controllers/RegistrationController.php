@@ -13,7 +13,7 @@ class RegistrationController extends My_Controller_Action
             } else {
                 $registrationModel = new Application_Model_Registration();   
                 $data = array(
-                    'ID_Tournement' => $formData['ID_Tournement'],
+                    'ID_ChampionshipDay' => $formData['ID_ChampionshipDay'],
                     'ID_Team' => $this->authUser['ID_Team'],
                 );
                 $registrationId = $registrationModel->insert($data);

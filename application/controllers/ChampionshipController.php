@@ -33,7 +33,7 @@ class ChampionshipController extends My_Controller_Action
         $this->view->loadedTabs = $this->tabIndex;
         
         $this->formMultiple = TRUE;
-        $this->id          = (int)$this->_getParam('id'); // get tournementId
+        $this->id          = (int)$this->_getParam('id'); // get championshipdayId
         $this->selectedTab = $this->view->selectedTab = $this->_getParam('tab','championship');
 
         $this->view->messages = $this->flashMessenger->getMessages();
@@ -60,7 +60,7 @@ class ChampionshipController extends My_Controller_Action
       	$this->child['id'] = $this->_getParam('childId', NULL);	  
       	$this->view->tabs = array(
 			'championship'	 => '',
-			'tournement'   => '',
+			'championshipday'=> '',
         );
     	//tab 1 = parent tab
         $this->tabChampionship('championship',$data);
@@ -68,7 +68,7 @@ class ChampionshipController extends My_Controller_Action
             //parent is  unknown, so we can't load other tabs because they are related
             return;
         }
-        $this->tabTournement('tournement',$data);
+        $this->tabChampionshipday('championshipday',$data);
 
         //all tabs are initialized, set tabIndex
         //tab index
@@ -96,10 +96,10 @@ class ChampionshipController extends My_Controller_Action
         $this->processDetail($options, $formParams);
     }   
     
-    protected function tabTournement($tabName, $data) {
-        $tournementModel = new Application_Model_Tournement();
+    protected function tabChampionshipday($tabName, $data) {
+        $championshipdayModel = new Application_Model_Championshipday();
         $where = 'ID_Championship = ' . $data['id'];
-        $this->view->tabs[$tabName] = $tournementModel->getAll($where);
+        $this->view->tabs[$tabName] = $championshipdayModel->getAll($where);
     }     
     
     private function buildTab($tabName,$data) {

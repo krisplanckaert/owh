@@ -11,7 +11,7 @@ class Application_Model_Game extends My_Model
         $isUpdate = FALSE;
        
         $dbFields = array(
-            'ID_Tournement' => $data['ID_Tournement'],
+            'ID_ChampionshipDay' => $data['ID_ChampionshipDay'],
             'ID_Field' => $data['ID_Field'],
             'ID_TeamWhite' => $data['ID_TeamWhite'],
             'ID_TeamBlack' => $data['ID_TeamBlack'],
@@ -59,7 +59,7 @@ class Application_Model_Game extends My_Model
     	//2. specify columns
         $this->dataGrid->updateColumn('ID', array('hidden' => true));
         $this->dataGrid->updateColumn('ID_Status', array('hidden' => true));
-        $this->dataGrid->updateColumn('ID_Tournement', array('hidden' => true));
+        $this->dataGrid->updateColumn('ID_ChampionshipDay', array('hidden' => true));
         $this->dataGrid->updateColumn('ID_TeamWhite', array('hidden' => true));        
         $this->dataGrid->updateColumn('ID_TeamBlack', array('hidden' => true)); 
         $this->dataGrid->updateColumn('ID_PlayerReferee1', array('hidden' => true));        
@@ -76,7 +76,7 @@ class Application_Model_Game extends My_Model
         ));    
         $this->dataGrid->updateColumn('Time',array(
                             'title'		=> 'Time',
-                            'decorator' => '<a href="/tournement/detail/id/{{ID_Tournement}}/tab/game/page/detail/childId/{{ID}}">{{Time}}</a>',
+                            'decorator' => '<a href="/championship/detail/id/{{ID_ChampionshipDay}}/tab/game/page/detail/childId/{{ID}}">{{Time}}</a>',
                             'position'  => 20,
         ));    
         $this->dataGrid->updateColumn('TeamWhite',array(

@@ -14,7 +14,7 @@ class GameController extends My_Controller_Action
             $gameModel = new Application_Model_Game();
             $totalUpdate = $gameModel->saveGame((array)$data['Referee1'],(array)$data['Referee2'],(array)$data['RefereeHead'], (array)$data['Black'], (array)$data['White']);
             $this->flashMessenger->addMessage((int)$totalUpdate.' rows updated');      
-            $targetUrl =  '/tournement/detail/id/' . $this->id . '/tab/'.$tabName.'/page/list';     
+            $targetUrl =  '/championshipday/detail/id/' . $this->id . '/tab/'.$tabName.'/page/list';     
             $this->_redirect($targetUrl); exit; 		    		
     	}    	
     }

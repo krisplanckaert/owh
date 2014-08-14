@@ -5,7 +5,7 @@
  *
  * @uses viewHelper Zend_View_Helper
  */
-class Zend_View_Helper_TournementHelper extends Zend_View_Helper_Abstract {
+class Zend_View_Helper_ChampionshipdayHelper extends Zend_View_Helper_Abstract {
 
     public $view;
 
@@ -25,7 +25,7 @@ class Zend_View_Helper_TournementHelper extends Zend_View_Helper_Abstract {
     * @param string $method
     * @param array $args
     */
-    public function TournementHelper($method,$args=NULL)
+    public function ChampionshipdayHelper($method,$args=NULL)
     {
         $thisClass    = get_class();
         $classMethods = get_class_methods($thisClass);

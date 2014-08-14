@@ -6,7 +6,7 @@ class Application_Form_Game extends My_Form
     protected $isChild = TRUE;
     protected $parentId;
     protected $productGroup;
-    protected $tournement;    
+    protected $championshipday;    
     protected $_defaultFormOptions = array(
                            'name' => 'frmDetail',
                            'method' => 'post',
@@ -165,8 +165,8 @@ class Application_Form_Game extends My_Form
         ;
         // -----------------------------------
         // Hidden fields
-        $tournement = new Zend_Form_Element_Hidden('ID_Tournement');
-        $tournement->setDecorators(array('ViewHelper'))
+        $championshipday = new Zend_Form_Element_Hidden('ID_ChampionshipDay');
+        $championshipday->setDecorators(array('ViewHelper'))
                 ->setValue((int) $this->parentId);        
         $tab = new Zend_Form_Element_Hidden('tabName');
         $tab->setDecorators(array('ViewHelper'))
@@ -175,7 +175,7 @@ class Application_Form_Game extends My_Form
         $child->setDecorators(array('ViewHelper'))
               ->setValue((int)$this->childId);
         
-        $hiddenElems = array($tournement, $tab, $child);
+        $hiddenElems = array($championshipday, $tab, $child);
         $this->addElements($hiddenElems);         
     }
     
