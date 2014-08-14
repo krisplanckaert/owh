@@ -10,10 +10,34 @@ Target Server Type    : MYSQL
 Target Server Version : 50150
 File Encoding         : 65001
 
-Date: 2013-10-18 19:30:06
+Date: 2014-08-14 16:58:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `championshipdays`
+-- ----------------------------
+DROP TABLE IF EXISTS `championshipdays`;
+CREATE TABLE `championshipdays` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_Championship` int(11) NOT NULL,
+  `Description` varchar(255) NOT NULL,
+  `Date` date NOT NULL,
+  `ID_Status` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`ID`),
+  KEY `ID_Status` (`ID_Status`),
+  KEY `ID_Championship` (`ID_Championship`),
+  CONSTRAINT `championshipdays_ibfk_1` FOREIGN KEY (`ID_Status`) REFERENCES `statuses` (`ID`),
+  CONSTRAINT `championshipdays_ibfk_2` FOREIGN KEY (`ID_Championship`) REFERENCES `championships` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of championshipdays
+-- ----------------------------
+INSERT INTO `championshipdays` VALUES ('1', '1', '1ste speeldag 2012-13', '2012-10-14', '1');
+INSERT INTO `championshipdays` VALUES ('2', '1', '2de speeldag 2012-13', '2012-11-18', '1');
+INSERT INTO `championshipdays` VALUES ('3', '3', 'oktober 2014', '2014-10-01', '1');
 
 -- ----------------------------
 -- Table structure for `championships`
@@ -26,13 +50,14 @@ CREATE TABLE `championships` (
   PRIMARY KEY (`ID`),
   KEY `ID_Status` (`ID_Status`),
   CONSTRAINT `championships_ibfk_1` FOREIGN KEY (`ID_Status`) REFERENCES `statuses` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of championships
 -- ----------------------------
 INSERT INTO `championships` VALUES ('1', '2012-13 Belgisch kampioenschap', '1');
 INSERT INTO `championships` VALUES ('2', '2013 Belgische beker', '1');
+INSERT INTO `championships` VALUES ('3', 'bk 2014-15', '1');
 
 -- ----------------------------
 -- Table structure for `fields`
@@ -95,7 +120,7 @@ CREATE TABLE `games` (
   CONSTRAINT `games_ibfk_5` FOREIGN KEY (`ID_PlayerReferee2`) REFERENCES `players` (`ID`),
   CONSTRAINT `games_ibfk_6` FOREIGN KEY (`ID_PlayerRefereeHead`) REFERENCES `players` (`ID`),
   CONSTRAINT `games_ibfk_7` FOREIGN KEY (`ID_Status`) REFERENCES `statuses` (`ID`),
-  CONSTRAINT `games_ibfk_8` FOREIGN KEY (`ID_Tournement`) REFERENCES `tournements` (`ID`),
+  CONSTRAINT `games_ibfk_8` FOREIGN KEY (`ID_Tournement`) REFERENCES `championshipdays` (`ID`),
   CONSTRAINT `games_ibfk_9` FOREIGN KEY (`ID_TeamReferee1`) REFERENCES `teams` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
@@ -165,7 +190,7 @@ CREATE TABLE `registrationplayers` (
   CONSTRAINT `registrationplayers_ibfk_1` FOREIGN KEY (`ID_Registration`) REFERENCES `registrations` (`ID`),
   CONSTRAINT `registrationplayers_ibfk_2` FOREIGN KEY (`ID_Player`) REFERENCES `players` (`ID`),
   CONSTRAINT `registrationplayers_ibfk_3` FOREIGN KEY (`ID_Status`) REFERENCES `statuses` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of registrationplayers
@@ -186,6 +211,8 @@ INSERT INTO `registrationplayers` VALUES ('28', '12', '3', '2');
 INSERT INTO `registrationplayers` VALUES ('29', '12', '5', '2');
 INSERT INTO `registrationplayers` VALUES ('30', '12', '3', '1');
 INSERT INTO `registrationplayers` VALUES ('31', '12', '5', '1');
+INSERT INTO `registrationplayers` VALUES ('32', '13', '4', '1');
+INSERT INTO `registrationplayers` VALUES ('33', '13', '3', '1');
 
 -- ----------------------------
 -- Table structure for `registrations`
@@ -193,17 +220,17 @@ INSERT INTO `registrationplayers` VALUES ('31', '12', '5', '1');
 DROP TABLE IF EXISTS `registrations`;
 CREATE TABLE `registrations` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_Tournement` int(11) NOT NULL,
+  `ID_ChampionshipDay` int(11) NOT NULL,
   `ID_Team` int(11) NOT NULL,
   `ID_Status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_Tournement` (`ID_Tournement`,`ID_Team`),
+  UNIQUE KEY `ID_Tournement` (`ID_ChampionshipDay`,`ID_Team`),
   KEY `ID_Team` (`ID_Team`),
   KEY `ID_Status` (`ID_Status`),
-  CONSTRAINT `registrations_ibfk_1` FOREIGN KEY (`ID_Tournement`) REFERENCES `tournements` (`ID`),
   CONSTRAINT `registrations_ibfk_2` FOREIGN KEY (`ID_Team`) REFERENCES `teams` (`ID`),
-  CONSTRAINT `registrations_ibfk_3` FOREIGN KEY (`ID_Status`) REFERENCES `statuses` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  CONSTRAINT `registrations_ibfk_3` FOREIGN KEY (`ID_Status`) REFERENCES `statuses` (`ID`),
+  CONSTRAINT `registrations_ibfk_4` FOREIGN KEY (`ID_ChampionshipDay`) REFERENCES `championshipdays` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of registrations
@@ -212,6 +239,8 @@ INSERT INTO `registrations` VALUES ('1', '1', '3', '1');
 INSERT INTO `registrations` VALUES ('7', '1', '1', '1');
 INSERT INTO `registrations` VALUES ('10', '1', '2', '1');
 INSERT INTO `registrations` VALUES ('12', '2', '1', '1');
+INSERT INTO `registrations` VALUES ('13', '3', '1', '1');
+INSERT INTO `registrations` VALUES ('14', '3', '2', '1');
 
 -- ----------------------------
 -- Table structure for `statuses`
@@ -279,26 +308,3 @@ CREATE TABLE `teamusers` (
 INSERT INTO `teamusers` VALUES ('1', '1', 'kris.planckaert.admin@telenet.be', '3bfd258844524c16d1544cd18a25b287', '1', '1');
 INSERT INTO `teamusers` VALUES ('2', '1', 'kris.planckaert@telenet.be', '3bfd258844524c16d1544cd18a25b287', '2', '1');
 INSERT INTO `teamusers` VALUES ('4', '2', 'massimo@pastrani.be', '6423361b0413cb5a2c91f9404b64ecd4', '2', '1');
-
--- ----------------------------
--- Table structure for `tournements`
--- ----------------------------
-DROP TABLE IF EXISTS `tournements`;
-CREATE TABLE `tournements` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `ID_Championship` int(11) NOT NULL,
-  `Description` varchar(255) NOT NULL,
-  `Date` date NOT NULL,
-  `ID_Status` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`ID`),
-  KEY `ID_Status` (`ID_Status`),
-  KEY `ID_Championship` (`ID_Championship`),
-  CONSTRAINT `tournements_ibfk_1` FOREIGN KEY (`ID_Status`) REFERENCES `statuses` (`ID`),
-  CONSTRAINT `tournements_ibfk_2` FOREIGN KEY (`ID_Championship`) REFERENCES `championships` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of tournements
--- ----------------------------
-INSERT INTO `tournements` VALUES ('1', '1', '1ste speeldag 2012-13', '2012-10-14', '1');
-INSERT INTO `tournements` VALUES ('2', '1', '2de speeldag 2012-13', '2012-11-18', '1');
